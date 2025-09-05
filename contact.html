@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seniorman Smart Data — Contact</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">📶 <strong>Seniorman Smart Data</strong></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html" class="btn">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container section">
+    <h1>Contact Us</h1>
+    <p class="lead">Chat us through WhatsApp <a href="https://wa.me/2347081434192">07081434192</a> or email <a href="mailto:amarabo2018@gmail.com">amarabo2018@gmail.com</a>. We are always available to assist you.</p>
+
+    <div class="card contact-card">
+      <form id="contact-form" onsubmit="return handleContact(event)">
+        <label><input name="name" placeholder="Your name" required></label>
+        <label><input name="email" type="email" placeholder="Your email" required></label>
+        <label>
+          <select name="service" required>
+            <option value="">Select service…</option>
+            <option>Data Bundles</option>
+            <option>Airtime Top‑Up</option>
+            <option>Bill Payment</option>
+            <option>WAEC/NECO</option>
+            <option>Airtime Buy‑Back</option>
+          </select>
+        </label>
+        <label><textarea name="message" placeholder="Message" required></textarea></label>
+        <button class="btn primary" type="submit">Send</button>
+      </form>
+    </div>
+
+    <p class="muted">Submitting will open your email app and also send a WhatsApp message to our support line as backup.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© <span id="year"></span> Seniorman Smart Data</div>
+  </footer>
+
+  <script>
+    function handleContact(e){
+      e.preventDefault();
+      const f = e.target;
+      const name = f.name.value.trim();
+      const email = f.email.value.trim();
+      const service = f.service.value;
+      const message = f.message.value.trim();
+      const subject = `Seniorman Smart Data — ${service} inquiry`;
+      const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0AService: ${service}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(message)}`;
+      // Open mail client
+      window.location.href = `mailto:amarabo2018@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+      // Open WhatsApp as backup
+      const wa = `https://wa.me/2347081434192?text=${encodeURIComponent(`${subject}\nName:${name}\nEmail:${email}\nMessage:${message}`)}`;
+      window.open(wa,'_blank');
+      return false;
+    }
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
